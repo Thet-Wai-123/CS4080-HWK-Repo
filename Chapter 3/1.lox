@@ -1,0 +1,14 @@
+print("Hello");
+
+fun add(a, b){
+	return a + b;
+}
+
+fun add(a,b,c){
+return 0;
+}
+
+print add(1,2);
+
+print add(1);
+print add(1,2,3);
