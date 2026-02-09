@@ -1,0 +1,9 @@
+// Valid comment
+
+/* Build support for this
+Multiple line
+/*Even nested comments works */
+*/
+
+
+print("Working if no error");
