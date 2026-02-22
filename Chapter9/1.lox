@@ -1,0 +1,43 @@
+class True {
+  ifThen(thenBranch) {
+    return thenBranch();
+  }
+
+  ifThenElse(thenBranch, elseBranch) {
+    return thenBranch();
+  }
+}
+
+class False {
+  ifThen(thenBranch) {
+    return nil;
+  }
+
+  ifThenElse(thenBranch, elseBranch) {
+    return elseBranch();
+  }
+}
+
+var t = True();
+var f = False();
+
+fun test(condition) {
+  fun ifThenFn() {
+    print "if then -> then";
+  }
+
+  condition.ifThen(ifThenFn);
+
+  fun ifThenElseThenFn() {
+    print "if then else -> then";
+  }
+
+  fun ifThenElseElseFn() {
+    print "if then else -> else";
+  }
+
+  condition.ifThenElse(ifThenElseThenFn, ifThenElseElseFn);
+}
+
+test(t);
+test(f);
