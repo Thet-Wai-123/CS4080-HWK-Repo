@@ -1,0 +1,25 @@
+// Test array-based variable indexing
+{
+  var a = 1;
+  var b = 2; 
+  var c = 3;
+  
+  print a; // Should be at index 0
+  print b; // Should be at index 1  
+  print c; // Should be at index 2
+  
+  a = 10;
+  b = 20;
+  c = 30;
+  
+  print a;
+  print b;
+  print c;
+}
+
+fun testFunction(x, y, z) {
+  // Parameters should be at indices 0, 1, 2
+  return x + y + z;
+}
+
+print testFunction(1, 2, 3);

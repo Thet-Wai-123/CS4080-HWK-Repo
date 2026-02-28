@@ -1,0 +1,14 @@
+// Test file for unused variable detection
+{
+  var used = "I am used";
+  var unused = "I am never used";
+  
+  print used; // This variable is used
+  // unused is never accessed, should trigger an error
+}
+
+// Test with function parameters
+fun testFunction(usedParam, unusedParam) {
+  return usedParam;
+  // unusedParam is never used, should trigger an error
+}
