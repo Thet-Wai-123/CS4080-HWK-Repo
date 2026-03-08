@@ -1,0 +1,8 @@
+class Test {
+    init(x) {
+        this.x = x;
+    }
+}
+
+var t = Test(42);
+print t.x;

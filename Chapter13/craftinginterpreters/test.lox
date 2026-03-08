@@ -1,0 +1,14 @@
+class Parent {
+  method() {
+    print "Parent method";
+    inner();  // Calls subclass version if it exists
+  }
+}
+
+class Child < Parent {
+  method() {
+    print "Child method";
+  }
+}
+
+Child().method();  // Prints: "Parent method" then "Child method"
