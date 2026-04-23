@@ -1,0 +1,10 @@
+switch(1){
+case 1:
+	print("one");
+	continue;
+	print("This should not get printed");
+case 2:
+	print("two");
+default:
+	print("default");
+}
