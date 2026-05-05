@@ -631,8 +631,9 @@ required semicolon at the end of the statement. All this gets wrapped in a
 Stmt.Var syntax tree node and we&rsquo;re groovy.</p>
 <p>Parsing a variable expression is even easier. In <code>primary()</code>, we look for an
 identifier token.</p>
-<div class="codehilite"><pre class="insert-before">      return new Expr.Literal(previous().literal);
-    }
+<div class="codehilite"><pre class="insert-before">
+
+    if (match(FUN)) return functionExpression();
 </pre><div class="source-file"><em>lox/Parser.java</em><br>
 in <em>primary</em>()</div>
 <pre class="insert">

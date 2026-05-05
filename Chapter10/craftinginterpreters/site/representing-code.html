@@ -973,65 +973,15 @@ create new file</div>
 <pre><span class="k">package</span> <span class="i">com.craftinginterpreters.lox</span>;
 
 <span class="k">class</span> <span class="t">AstPrinter</span> <span class="k">implements</span> <span class="t">Expr</span>.<span class="t">Visitor</span>&lt;<span class="t">String</span>&gt; {
-  <span class="t">String</span> <span class="i">print</span>(<span class="t">Expr</span> <span class="i">expr</span>) {
-    <span class="k">return</span> <span class="i">expr</span>.<span class="i">accept</span>(<span class="k">this</span>);
-  }
-}
 </pre></div>
 <div class="source-file-narrow"><em>lox/AstPrinter.java</em>, create new file</div>
 
 <p>As you can see, it implements the visitor interface. That means we need visit
-methods for each of the expression types we have so far.</p>
-<div class="codehilite"><pre class="insert-before">    return expr.accept(this);
-  }
-</pre><div class="source-file"><em>lox/AstPrinter.java</em><br>
-add after <em>print</em>()</div>
-<pre class="insert">
-
-  <span class="a">@Override</span>
-  <span class="k">public</span> <span class="t">String</span> <span class="i">visitBinaryExpr</span>(<span class="t">Expr</span>.<span class="t">Binary</span> <span class="i">expr</span>) {
-    <span class="k">return</span> <span class="i">parenthesize</span>(<span class="i">expr</span>.<span class="i">operator</span>.<span class="i">lexeme</span>,
-                        <span class="i">expr</span>.<span class="i">left</span>, <span class="i">expr</span>.<span class="i">right</span>);
-  }
-
-  <span class="a">@Override</span>
-  <span class="k">public</span> <span class="t">String</span> <span class="i">visitGroupingExpr</span>(<span class="t">Expr</span>.<span class="t">Grouping</span> <span class="i">expr</span>) {
-    <span class="k">return</span> <span class="i">parenthesize</span>(<span class="s">&quot;group&quot;</span>, <span class="i">expr</span>.<span class="i">expression</span>);
-  }
-
-  <span class="a">@Override</span>
-  <span class="k">public</span> <span class="t">String</span> <span class="i">visitLiteralExpr</span>(<span class="t">Expr</span>.<span class="t">Literal</span> <span class="i">expr</span>) {
-    <span class="k">if</span> (<span class="i">expr</span>.<span class="i">value</span> == <span class="k">null</span>) <span class="k">return</span> <span class="s">&quot;nil&quot;</span>;
-    <span class="k">return</span> <span class="i">expr</span>.<span class="i">value</span>.<span class="i">toString</span>();
-  }
-
-  <span class="a">@Override</span>
-  <span class="k">public</span> <span class="t">String</span> <span class="i">visitUnaryExpr</span>(<span class="t">Expr</span>.<span class="t">Unary</span> <span class="i">expr</span>) {
-    <span class="k">return</span> <span class="i">parenthesize</span>(<span class="i">expr</span>.<span class="i">operator</span>.<span class="i">lexeme</span>, <span class="i">expr</span>.<span class="i">right</span>);
-  }
-</pre><pre class="insert-after">}
-</pre></div>
-<div class="source-file-narrow"><em>lox/AstPrinter.java</em>, add after <em>print</em>()</div>
+methods for each of the expression types we have so far.</p><strong>ERROR: Missing snippet visit-methods</strong>
 
 <p>Literal expressions are easy<span class="em">&mdash;</span>they convert the value to a string with a little
 check to handle Java&rsquo;s <code>null</code> standing in for Lox&rsquo;s <code>nil</code>. The other expressions
-have subexpressions, so they use this <code>parenthesize()</code> helper method:</p>
-<div class="codehilite"><div class="source-file"><em>lox/AstPrinter.java</em><br>
-add after <em>visitUnaryExpr</em>()</div>
-<pre>  <span class="k">private</span> <span class="t">String</span> <span class="i">parenthesize</span>(<span class="t">String</span> <span class="i">name</span>, <span class="t">Expr</span>... <span class="i">exprs</span>) {
-    <span class="t">StringBuilder</span> <span class="i">builder</span> = <span class="k">new</span> <span class="t">StringBuilder</span>();
-
-    <span class="i">builder</span>.<span class="i">append</span>(<span class="s">&quot;(&quot;</span>).<span class="i">append</span>(<span class="i">name</span>);
-    <span class="k">for</span> (<span class="t">Expr</span> <span class="i">expr</span> : <span class="i">exprs</span>) {
-      <span class="i">builder</span>.<span class="i">append</span>(<span class="s">&quot; &quot;</span>);
-      <span class="i">builder</span>.<span class="i">append</span>(<span class="i">expr</span>.<span class="i">accept</span>(<span class="k">this</span>));
-    }
-    <span class="i">builder</span>.<span class="i">append</span>(<span class="s">&quot;)&quot;</span>);
-
-    <span class="k">return</span> <span class="i">builder</span>.<span class="i">toString</span>();
-  }
-</pre></div>
-<div class="source-file-narrow"><em>lox/AstPrinter.java</em>, add after <em>visitUnaryExpr</em>()</div>
+have subexpressions, so they use this <code>parenthesize()</code> helper method:</p><strong>ERROR: Missing snippet print-utilities</strong>
 
 <p>It takes a name and a list of subexpressions and wraps them all up in
 parentheses, yielding a string like:</p>
@@ -1046,22 +996,7 @@ with trees.</p>
 </aside>
 <p>We don&rsquo;t have a parser yet, so it&rsquo;s hard to see this in action. For now, we&rsquo;ll
 hack together a little <code>main()</code> method that manually instantiates a tree and
-prints it.</p>
-<div class="codehilite"><div class="source-file"><em>lox/AstPrinter.java</em><br>
-add after <em>parenthesize</em>()</div>
-<pre>  <span class="k">public</span> <span class="k">static</span> <span class="t">void</span> <span class="i">main</span>(<span class="t">String</span>[] <span class="i">args</span>) {
-    <span class="t">Expr</span> <span class="i">expression</span> = <span class="k">new</span> <span class="t">Expr</span>.<span class="t">Binary</span>(
-        <span class="k">new</span> <span class="t">Expr</span>.<span class="t">Unary</span>(
-            <span class="k">new</span> <span class="t">Token</span>(<span class="t">TokenType</span>.<span class="i">MINUS</span>, <span class="s">&quot;-&quot;</span>, <span class="k">null</span>, <span class="n">1</span>),
-            <span class="k">new</span> <span class="t">Expr</span>.<span class="t">Literal</span>(<span class="n">123</span>)),
-        <span class="k">new</span> <span class="t">Token</span>(<span class="t">TokenType</span>.<span class="i">STAR</span>, <span class="s">&quot;*&quot;</span>, <span class="k">null</span>, <span class="n">1</span>),
-        <span class="k">new</span> <span class="t">Expr</span>.<span class="t">Grouping</span>(
-            <span class="k">new</span> <span class="t">Expr</span>.<span class="t">Literal</span>(<span class="n">45.67</span>)));
-
-    <span class="t">System</span>.<span class="i">out</span>.<span class="i">println</span>(<span class="k">new</span> <span class="t">AstPrinter</span>().<span class="i">print</span>(<span class="i">expression</span>));
-  }
-</pre></div>
-<div class="source-file-narrow"><em>lox/AstPrinter.java</em>, add after <em>parenthesize</em>()</div>
+prints it.</p><strong>ERROR: Missing snippet printer-main</strong>
 
 <p>If we did everything right, it prints:</p>
 <div class="codehilite"><pre>(* (- 123) (group 45.67))

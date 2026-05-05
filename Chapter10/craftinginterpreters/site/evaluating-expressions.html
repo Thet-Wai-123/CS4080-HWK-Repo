@@ -231,13 +231,13 @@ expressions, which are also leaf nodes.</p>
 in the parser, now we convert the literal tree node into a runtime value. That
 turns out to be trivial.</p>
 <div class="codehilite"><div class="source-file"><em>lox/Interpreter.java</em><br>
-in class <em>Interpreter</em></div>
+add after class <em>Interpreter</em></div>
 <pre>  <span class="a">@Override</span>
   <span class="k">public</span> <span class="t">Object</span> <span class="i">visitLiteralExpr</span>(<span class="t">Expr</span>.<span class="t">Literal</span> <span class="i">expr</span>) {
     <span class="k">return</span> <span class="i">expr</span>.<span class="i">value</span>;
   }
 </pre></div>
-<div class="source-file-narrow"><em>lox/Interpreter.java</em>, in class <em>Interpreter</em></div>
+<div class="source-file-narrow"><em>lox/Interpreter.java</em>, add after class <em>Interpreter</em></div>
 
 <p>We eagerly produced the runtime value way back during scanning and stuffed it in
 the token. The parser took that value and stuck it in the literal tree node,
@@ -246,13 +246,13 @@ so to evaluate a literal, we simply pull it back out.</p>
 <p>The next simplest node to evaluate is grouping<span class="em">&mdash;</span>the node you get as a result
 of using explicit parentheses in an expression.</p>
 <div class="codehilite"><div class="source-file"><em>lox/Interpreter.java</em><br>
-in class <em>Interpreter</em></div>
+add after class <em>Interpreter</em></div>
 <pre>  <span class="a">@Override</span>
   <span class="k">public</span> <span class="t">Object</span> <span class="i">visitGroupingExpr</span>(<span class="t">Expr</span>.<span class="t">Grouping</span> <span class="i">expr</span>) {
     <span class="k">return</span> <span class="i">evaluate</span>(<span class="i">expr</span>.<span class="i">expression</span>);
   }
 </pre></div>
-<div class="source-file-narrow"><em>lox/Interpreter.java</em>, in class <em>Interpreter</em></div>
+<div class="source-file-narrow"><em>lox/Interpreter.java</em>, add after class <em>Interpreter</em></div>
 
 <p>A <span name="grouping">grouping</span> node has a reference to an inner node
 for the expression contained inside the parentheses. To evaluate the grouping

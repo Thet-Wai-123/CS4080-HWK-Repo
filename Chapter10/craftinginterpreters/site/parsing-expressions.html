@@ -683,6 +683,8 @@ add after <em>unary</em>()</div>
       <span class="k">return</span> <span class="k">new</span> <span class="t">Expr</span>.<span class="t">Literal</span>(<span class="i">previous</span>().<span class="i">literal</span>);
     }
 
+    <span class="k">if</span> (<span class="i">match</span>(<span class="i">FUN</span>)) <span class="k">return</span> <span class="i">functionExpression</span>();
+
     <span class="k">if</span> (<span class="i">match</span>(<span class="i">LEFT_PAREN</span>)) {
       <span class="t">Expr</span> <span class="i">expr</span> = <span class="i">expression</span>();
       <span class="i">consume</span>(<span class="i">RIGHT_PAREN</span>, <span class="s">&quot;Expect &#39;)&#39; after expression.&quot;</span>);
