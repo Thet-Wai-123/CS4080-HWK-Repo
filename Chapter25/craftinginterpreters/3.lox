@@ -1,0 +1,32 @@
+fun Vector(x, y) {
+  fun getX() {return x;}
+  fun getY() {return y;}
+  fun add(other) {
+    return Vector(
+      x + other("getX")(),
+      y + other("getY")()
+    );
+  }
+  fun dispatch(method) {
+    if (method == "getX") return getX;
+    if (method == "getY") return getY;
+    if (method == "add") return add;
+    return nil;
+  }
+  return dispatch;
+}
+var v1 = Vector(3, 4);
+var v2 = Vector(10, 5);
+
+print "v1 coordinates";
+print(v1("getX")());
+print(v1("getY")());
+
+print "v2 coordinates";
+print(v2("getX")());
+print(v2("getY")());
+
+var v3 = v1("add")(v2);
+print(v3("getX")());
+print(v3("getY")());
+

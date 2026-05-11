@@ -1,0 +1,5 @@
+class Foo{}
+
+var obj = Foo();
+
+print hasField(obj, "x");

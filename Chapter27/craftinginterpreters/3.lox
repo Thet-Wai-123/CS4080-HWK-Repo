@@ -1,0 +1,13 @@
+class Foo{
+	init(a){
+		this.a = a;
+	}
+}
+
+var obj = Foo("aValue");
+
+print hasField(obj, "a");
+
+deleteField(obj, "a");
+print hasField(obj, "a");
+
