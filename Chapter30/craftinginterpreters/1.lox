@@ -1,0 +1,13 @@
+fun run(times) {
+  var sum = 0;
+
+  for (var i = 0; i < times; i = i + 1) {
+    sum = sum + i;
+    sum = sum * 2;
+    sum = sum / 2;
+  }
+
+  print sum;
+}
+
+run(10000000);
